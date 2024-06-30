@@ -1,50 +1,85 @@
-# maths-skills
-math-skills
-Objectives
+Statistics Calculator
 
-The purpose of this project is for you to calculate the following:
+This is a Go program that reads numerical data from a file and calculates basic statistical measures: average (mean), median, variance, and standard deviation. The results are printed to the console.
+Usage
 
-    Average
-    Median
-    Variance
-    Standard Deviation
+To use this program, you need to have Go installed on your system. You can run the program with the following command:
 
-Instructions
+sh
 
-Your program must be able to read from a file and print the result of each statistic mentioned above. In other words, your program must be able to read the data present in the path passed as argument. The data in the file will be presented as the following example:
+go run main.go data.txt
 
-189
-113
-121
-114
-145
-110
-...
+Here, data.txt is the file containing the numerical data you want to analyze. Each number should be on a new line in the file.
+How It Works
+Reading Data
 
-This data represents a statistical population: each line contains one value.
+The readData function reads numerical data from a specified file and returns a slice of float64 values. It uses the bufio package to read the file line by line and the strconv package to convert each line to a float64.
+Calculating Statistics
 
-To run your program a command similar to this one will be used if your project is made in Go:
+The calculateStatistics function takes a slice of float64 values and calculates the following:
 
-$> go run your-program.go data.txt
+    Average (mean): The sum of all the numbers divided by the count of numbers.
+    Median: The middle value in the sorted list of numbers. If the list has an even number of values, the median is the average of the two middle values.
+    Variance: The average of the squared differences from the mean.
+    Standard Deviation: The square root of the variance, representing the dispersion of the dataset.
 
-After reading the file, your program must execute each of the calculations asked above and print the results in the following manner (the following numbers are only examples):
+Main Function
 
-Average: 35
-Median: 4
-Variance: 5
-Standard Deviation: 65
+The main function handles the following:
 
-Please note that the values are rounded integers.
-Testing
+    Checks if the correct number of command-line arguments is provided.
+    Reads the data from the specified file.
+    Calculates the statistical measures.
+    Prints the results to the console.
 
-Your program will be tested by an auditor who will run a program provided by us. This program creates a random data set of numbers and prints the result. The auditor job is to compare how your program performed.
+Example
 
-You can choose the language in which you want to build your program.
+Given a file data.txt with the following content:
 
-This project will help you learn about:
+1
+2
+3
+4
+5
 
-    Statistics and Mathematics
-        Average
-        Median
-        Variance
-        Standard Deviation
+Running the program:
+
+sh
+
+go run main.go data.txt
+
+Will produce the following output:
+
+yaml
+
+Average: 3
+Median: 3
+Variance: 2
+Standard Deviation: 1
+
+Error Handling
+
+The program handles errors in the following ways:
+
+    If the file cannot be opened, an error message is printed and the program exits.
+    If a line in the file cannot be parsed as a float, an error message is printed and the program exits.
+    If the number of command-line arguments is incorrect, a usage message is printed and the program exits.
+
+Requirements
+
+    Go 1.18 or later
+
+Installation
+
+    Clone the repository or download the main.go file.
+    Ensure you have Go installed on your system.
+    Run the program with your data file as described in the Usage section.
+
+License
+
+This project is licensed under the MIT License.
+Author
+
+    eddy marvin
+
+Feel free to customize this README file with your information and any additional details specific to your project.
